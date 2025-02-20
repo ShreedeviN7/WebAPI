@@ -17,7 +17,7 @@ public class SalesService : ISalesService
     public SalesService(ILogger<SalesService> logger)
     {
         _logger = logger;
-        string filePath = Path.Combine(AppContext.BaseDirectory, "salesdataTemplate", "sales_data.csv");
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "salesdataTemplate", "sales_data.csv");
 
         if (!File.Exists(filePath))
         {
