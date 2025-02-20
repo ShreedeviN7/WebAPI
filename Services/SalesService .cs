@@ -228,10 +228,15 @@ public class SalesService : ISalesService
             }
 
             // Step 3: Calculate min, max, avg for the most popular item
-            var orders = _sales
-                .Where(s => $"{s.Date.Year}-{s.Date.Month:D2}" == month.Key && s.SKU == mostPopularSKU)
-                .Select(s => s.Quantity)
-                .ToList();
+            var orders = new List<int>();
+            foreach (var sale in _sales)
+            {
+                if ($"{sale.Date.Year}-{sale.Date.Month:D2}" == month.Key && sale.SKU == mostPopularSKU)
+                {
+                    orders.Add(sale.Quantity);
+                }
+            }
+
 
             if (orders.Count > 0)
             {
